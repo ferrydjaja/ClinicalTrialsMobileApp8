@@ -1,0 +1,174 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "ClinicalTrials.ClinicalTrials",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"oSponsorModel": {
+				"uri": "model/sponsor.json",
+				"type": "JSON"
+			},
+			"oTrialStatusModel": {
+				"uri": "model/trialstatus.json",
+				"type": "JSON"
+			},
+			"oMenuTilesModel": {
+				"uri": "model/menutiles.json",
+				"type": "JSON"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "ClinicalTrials.ClinicalTrials.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ClinicalTrials.ClinicalTrials.i18n.i18n"
+				}
+			},
+			"SponsorModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "oSponsorModel"
+			},
+			"TrialStatusModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "oTrialStatusModel"
+			},
+			"MenuTilesModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "oMenuTilesModel"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "JS",
+				"async": true,
+				"viewPath": "ClinicalTrials.ClinicalTrials.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"viewLevel": 0,
+				"bypassed": {
+					"target": []
+				}
+			},
+			"routes": [{
+				"name": "home",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["home"]
+			},{ 
+				"name": "feedback",
+				"pattern": "feedback",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["feedback"]
+			},{
+				"name": "list",
+				"pattern": "list",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["list"]
+			},{
+				"name": "detail",
+				"pattern": "detail",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["detail"]
+			},{
+				"name": "favorite",
+				"pattern": "favorite",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["favorite"]
+			}],
+			"targets": {
+				"home": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Main",
+					"viewLevel": 1
+				},
+				"feedback": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Feedback",
+					"viewLevel": 2
+				},
+				"list": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "List",
+					"viewLevel": 3
+				},
+				"detail": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Detail",
+					"viewLevel": 4
+				},
+				"favorite": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Favorite",
+					"viewLevel": 5
+				}
+			}
+		}
+	}
+}

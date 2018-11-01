@@ -1,0 +1,84 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="ClinicalTrials.ClinicalTrials.controller.List" xmlns="sap.m" xmlns:vbm="sap.ui.vbm">
+    <Page showHeader="true" title="{i18n&gt;Condition}: {/cond/0}" showFooter="true" showNavButton="true" navButtonText="{i18n&gt;Back}" navButtonTap="NavBack" enableScrolling="false">
+		<customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="doNavBack" tooltip="{i18n&gt;Back}" />
+                </contentLeft>
+                <contentMiddle>
+                    <Text text="{i18n&gt;Condition}: {/cond/0}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://home" press="doNavHome" tooltip="{i18n&gt;Home}" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Transparent" upperCase="false" visible="true" selectedKey="Ok" stretchContentHeight="true">
+                <items>
+                    <IconTabFilter icon="sap-icon://list" iconColor="Default" text="{i18n&gt;List}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content>
+                            <SearchField placeholder="{i18n&gt;SearchField}" tooltip="{i18n&gt;SearchTTIP}" liveChange="Search" search="Search" showSearchButton="true" visible="true" width="100%" />
+                        </content>
+                        <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                            <content>
+                                <List id="polist" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="10" inset="false" growingTriggerText="" showNoData="true" growingScrollToLoad="false" visible="true" items="{/modelData/0/results}" mode="MultiSelect">
+                                    <infoToolbar>
+                                        <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                            <content>
+                                                <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                            </content>
+                                        </Toolbar>
+                                    </infoToolbar>
+                                    <items>
+                                        <ObjectListItem intro="{last_update_submitted}" title="{brief_title}" type="Active" selected="false" showMarkers="false" press="handleOnPress">
+                                            <attributes>
+                                                <ObjectAttribute text="{id_info/nct_id}" active="false" visible="true" />
+                                                <ObjectAttribute text="{eligibility/minimum_age}" active="false" visible="true" />
+                                            </attributes>
+                                            <firstStatus>
+                                                <ObjectStatus text="{overall_status}" state="{                                                     path: 'overall_status',                                                     formatter: 'ClinicalTrials.ClinicalTrials.controller.Formatter.status'                                                 }" visible="true" />
+                                            </firstStatus>
+                                            <secondStatus>
+                                                <ObjectStatus text="{eligibility/gender}" state="None" icon="sap-icon://person-placeholder" visible="true" />
+                                            </secondStatus>
+                                        </ObjectListItem>
+                                    </items>
+                                </List>
+                            </content>
+                        </ScrollContainer>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false" />
+                    <IconTabFilter icon="sap-icon://map-2" iconColor="Default" text="{i18n&gt;Map}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                            <content>
+                                <vbm:GeoMap id="vbi" legendVisible="true" scaleVisible="true" width="100%" height="600px" centerPosition="/modelData/0/CenterPosition" initialZoom="1" zoomlevel="1" enableAnimation="false" refMapLayerStack="Default" disableZoom="false" disablePan="false">
+                                    <vbm:resources />
+                                    <vbm:legend />
+                                    <vbm:vos>
+                                        <vbm:Spots items="{/modelData/0/SpotsC}">
+                                            <vbm:items>
+                                                <vbm:Spot position="{pos}" tooltip="{tooltip}" text="{key}" type="{type}" select="{select}" selectColor="RHLSA(0;1.0;3.0;1.0)"></vbm:Spot>
+                                            </vbm:items>
+                                        </vbm:Spots>
+                                    </vbm:vos>
+                                </vbm:GeoMap>
+                            </content>
+                        </ScrollContainer>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+        <headerContent />
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button text="{i18n&gt;Save}" type="Accept" icon="sap-icon://save" tooltip="{i18n&gt;Save}" press="saveNCTOnPress" />
+                    <Button text="{i18n&gt;Clear}" icon="sap-icon://sys-cancel" tooltip="{i18n&gt;Clear}" press="clearNCTOnPress" />
+                </contentRight>
+            </Bar>
+        </footer>
+        <subHeader />
+        <customHeader />
+    </Page>
+</mvc:View>

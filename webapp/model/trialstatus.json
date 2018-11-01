@@ -1,0 +1,42 @@
+[
+ {
+   "code": "",
+   "trialstatus": "All"
+ },
+ {
+   "code": "b",
+   "trialstatus": "Not yet recruiting"
+ },
+ {
+   "code": "a",
+   "trialstatus": "Recruiting"
+ },
+ {
+   "code": "f",
+   "trialstatus": "Enrolling by invitation"
+ },
+ {
+   "code": "d",
+   "trialstatus": "Active, not recruiting"
+ },
+ {
+   "code": "g",
+   "trialstatus": "Suspended"
+ },
+ {
+   "code": "h",
+   "trialstatus": "Terminated"
+ }, 
+ {
+   "code": "e",
+   "trialstatus": "Completed"
+ }, 
+ {
+   "code": "i",
+   "trialstatus": "Withdrawn"
+ }, 
+ {
+   "code": "m",
+   "trialstatus": "Unknown status"
+ }
+]

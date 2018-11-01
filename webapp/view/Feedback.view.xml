@@ -1,0 +1,101 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="ClinicalTrials.ClinicalTrials.controller.Feedback" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page showHeader="true" title="{i18n&gt;Title}" showFooter="true" showNavButton="true" navButtonText="{i18n&gt;Back}" navButtonTap="NavBack" enableScrolling="true">
+        <content>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Condition}" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <Input id="selectConditionAS" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" showSuggestion="true" placeholder="{i18n&gt;ConditionPH}" valueHelpRequest="ConditionValueHelpRequest"></Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Terms}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <Input id="selectTermsAS" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" showSuggestion="true" placeholder="{i18n&gt;TermsPH}" valueHelpRequest="TermsValueHelpRequest"></Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Location}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <Input id="selectLocationAS" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" showSuggestion="true" placeholder="{i18n&gt;LocationPH}" valueHelpRequest="LocationValueHelpRequest"></Input>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Sponsor}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <Select id="selectSponsorAS" width="auto" change="onSelectSponsorChange" autoAdjustWidth="true" items="{/}" selectedKey="0">
+                                        <core:Item key="{code}" text="{sponsor}" />
+                                    </Select>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Gender}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <RadioButtonGroup id="selectGenderAS" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
+                                        <buttons>
+                                            <RadioButton text="{i18n&gt;All}" editable="true" enabled="true" visible="true" width="auto" valueState="All" selected="false" />
+                                            <RadioButton text="{i18n&gt;Male}" editable="true" enabled="true" visible="true" width="auto" valueState="Male" selected="false" />
+                                            <RadioButton text="{i18n&gt;Female}" editable="true" enabled="true" visible="true" width="auto" valueState="Female" selected="false" />
+                                        </buttons>
+                                    </RadioButtonGroup>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;Age}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <RadioButtonGroup id="selectAgeAS" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
+                                        <buttons>
+                                            <RadioButton text="{i18n&gt;All}" editable="true" enabled="true" visible="true" width="auto" valueState="" selected="false" />
+                                            <RadioButton text="{i18n&gt;Child}" editable="true" enabled="true" visible="true" width="auto" valueState="0" selected="false" />
+                                            <RadioButton text="{i18n&gt;Adult}" editable="true" enabled="true" visible="true" width="auto" valueState="1" selected="false" />
+                                            <RadioButton text="{i18n&gt;Older}" editable="true" enabled="true" visible="true" width="auto" valueState="2" selected="false" />
+                                        </buttons>
+                                    </RadioButtonGroup>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n&gt;TrialStatus}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                </form:label>
+                                <form:fields>
+                                    <Select id="selectTrialStatusAS" width="auto" change="onSelectTrialStatusChange" autoAdjustWidth="true" items="{/}" selectedKey="0">
+                                        <core:Item key="{code}" text="{trialstatus}" />
+                                    </Select>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="2" labelSpanS="12" />
+                </form:layout>
+            </form:Form>
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <ToolbarSpacer width="" />
+                    <Button text="{i18n&gt;Search}" icon="sap-icon://search" tooltip="{i18n&gt;Search}" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onButtonPress" />
+                    <Button text="{i18n&gt;Clear}" icon="sap-icon://sys-cancel" tooltip="{i18n&gt;Clear}" press="onCancelButtonPress" />
+                </contentRight>
+            </Bar>
+        </footer>
+        <subHeader />
+        <customHeader />
+    </Page>
+</mvc:View>

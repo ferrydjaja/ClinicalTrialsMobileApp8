@@ -1,0 +1,22 @@
+{
+  "TileCollection" : [
+    {
+      "image" : "images/menu1.png",
+      "contenttext" : "Search Condition",
+      "subheader" : "Explore research studies",
+      "footer": "The source is from ClinicalTrials.gov"
+    },
+    {
+      "image" : "images/menu2.png",
+      "contenttext" : "Favorites",
+      "subheader" : "List of saved NCT numbers",
+      "footer": "The source is from ClinicalTrials.gov"
+    },
+    {
+      "image" : "images/menu3.png",
+      "contenttext" : "About",
+      "subheader" : "About Us",
+      "footer": "Contact Us"
+    }
+  ]
+}

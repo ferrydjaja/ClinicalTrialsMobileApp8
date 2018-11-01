@@ -1,0 +1,23 @@
+<mvc:View controllerName="ClinicalTrials.ClinicalTrials.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Page showHeader="true" enableScrolling="true">
+        <Panel>
+            <FlexBox alignItems="Center" justifyContent="Center" wrap="Wrap">
+                <l:HorizontalLayout id="menutilescontainerAS" allowWrapping="true" content="{/TileCollection}">
+                    <GenericTile class="customTile" header="" backgroundImage="{image}" frameType="TwoByOne" press="handlePress" sizeBehavior="Small" scope="Display">
+                        <TileContent footer="{footer}">
+                            <NewsContent contentText="{contenttext}" subheader="{subheader}" />
+                        </TileContent>
+                    </GenericTile>
+                </l:HorizontalLayout>
+            </FlexBox>
+        </Panel>
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Text text="{i18n&gt;appTitle}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <footer></footer>
+    </Page>
+</mvc:View>

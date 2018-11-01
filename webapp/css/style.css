@@ -1,0 +1,26 @@
+/* Custom Styles  */
+#ui5Logo {
+    padding-left: 10px !important;
+}
+#myproLink {
+    color: #ffffff !important;
+}
+.welcomeText {
+	font-size: 1.0rem !important;
+	margin: 2rem !important;
+}
+.sapMITBHead {
+  white-space: normal !important;
+}
+.sapMITBFilter .sapMITBText {
+  padding: 0.05rem 0 0 !important;
+}
+.sapMLabel {
+    font-size: 0.675rem !important;
+}
+
+.customTile {
+	margin-top: 35px;
+    margin-left: 35px;
+    margin-right: 35px;
+}

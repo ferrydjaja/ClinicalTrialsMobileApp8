@@ -1,0 +1,166 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="ClinicalTrials.ClinicalTrials.controller.Detail" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:vbm="sap.ui.vbm" xmlns:vk="sap.ui.vk" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+    <Page title="{nct_id} - {brief_title}" showHeader="true" showNavButton="true" navButtonPress="doNavBack" enableScrolling="true">
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://nav-back" press="doNavBack" tooltip="{i18n&gt;Back}" />
+                </contentLeft>
+                <contentMiddle>
+                    <Text text="{id_info/nct_id}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://home" press="doNavHome" tooltip="{i18n&gt;Home}" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Transparent" upperCase="false" visible="true" selectedKey="Ok">
+                <items>
+                    <IconTabFilter icon="sap-icon://map-2" text="{i18n&gt;Location}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content>
+                            <vbm:GeoMap id="vbi" legendVisible="true" scaleVisible="true" width="100%" height="200px" centerPosition="{/modelData1/0/centerposition}" initialZoom="1" zoomlevel="1" enableAnimation="false" refMapLayerStack="Default" disableZoom="false" disablePan="false">
+                                <vbm:vos>
+                                    <vbm:Spots items="{/modelData1/0/Spots}">
+                                        <vbm:items>
+                                            <vbm:Spot position="{pos}" tooltip="{tooltip}" type="{type}" select="{select}" selectColor="RHLSA(0;1.0;3.0;1.0)"></vbm:Spot>
+                                        </vbm:items>
+                                    </vbm:Spots>
+                                </vbm:vos>
+                            </vbm:GeoMap>
+                            <form:SimpleForm editable="false">
+                                <form:content>
+                                    <VBox>
+                                        <Text text="{i18n&gt;ContactLocations}" wrapping="true" />
+                                        <Text text="{/modelData1/0/overall_contact/last_name}" wrapping="true" />
+                                        <Text text="{/modelData1/0/overall_contact/phone}" wrapping="true" />
+                                        <Text text="{/modelData1/0/overall_contact/email}" wrapping="true" />
+                                    </VBox>
+                                </form:content>
+                            </form:SimpleForm>
+                            <Panel headerText="{i18n&gt;Location}" expandable="true" expanded="true">
+                                <content>
+                                    <SearchField placeholder="{i18n&gt;Search}" tooltip="{i18n&gt;SearchTTIP}" liveChange="SearchLocation" search="SearchLocation" showSearchButton="true" visible="true" width="100%" />
+                                    <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                                        <content>
+                                            <List id="polocation" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="10" inset="false" growingTriggerText="" showNoData="true" growingScrollToLoad="false" visible="true" items="{          path: '/modelData1/0/location',          sorter: {path: 'facility/address/country', descending: false, group: true}                  }">
+                                                <infoToolbar>
+                                                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                                        <content>
+                                                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                                        </content>
+                                                    </Toolbar>
+                                                </infoToolbar>
+                                                <items>
+                                                    <ObjectListItem intro="{contact/email}" title="{facility/name}" type="Active" selected="true" showMarkers="false" press="handleOnPress">
+                                                        <attributes>
+                                                            <ObjectAttribute text="{facility/address/city} {facility/address/state} {facility/address/zip}" active="false" visible="true" />
+                                                            <ObjectAttribute text="{facility/address/country}" active="false" visible="true" />
+                                                        </attributes>
+                                                        <firstStatus>
+                                                            <ObjectStatus text="{status}" state="None" visible="true" />
+                                                        </firstStatus>
+                                                        <secondStatus>
+                                                            <ObjectStatus text="{contact/last_name}" state="None" visible="true" />
+                                                        </secondStatus>
+                                                    </ObjectListItem>
+                                                </items>
+                                            </List>
+                                        </content>
+                                    </ScrollContainer>
+                                </content>
+                            </Panel>
+                        </content>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false" />
+                    <IconTabFilter icon="sap-icon://list" iconColor="Neutral" text="{i18n&gt;Info}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                            <content>
+                                <Panel headerText="1. {i18n&gt;OfficialTitle}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="NCTID: {id_info/nct_id}" wrapping="true" />
+                                            <Text text="Org Study ID: {id_info/org_study_id}" wrapping="true" />
+                                            <Text text="{official_title}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                <Panel headerText="2. {i18n&gt;Conditions}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox items="{/modelData1/0/condition}">
+                                            <Text text="{}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                <Panel headerText="3. {i18n&gt;Intervention}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox items="{/modelData1/0/intervention}">
+                                            <Text text="{intervention_type}: {intervention_name}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                <Panel headerText="4. {i18n&gt;Purpose}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{brief_summary/textblock}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                <Panel headerText="5. {i18n&gt;PhaseStatus}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{phase}" wrapping="true" />
+                                            <Text text="{overall_status}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                            </content>
+                        </ScrollContainer>
+                    </IconTabFilter>
+                    <IconTabSeparator icon="" iconDensityAware="false" />
+                    <IconTabFilter icon="sap-icon://activity-items" iconColor="Neutral" text="{i18n&gt;Eligibility}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+                            <content>
+                                <Panel headerText="1. {i18n&gt;IC}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{inclusioncriteria}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                                <Panel headerText="2. {i18n&gt;EC}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{exclusioncriteria}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+								<Panel headerText="3. {i18n&gt;Gender}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{eligibility/gender}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+								<Panel headerText="4. {i18n&gt;Age}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{i18n&gt;MinAge}: {eligibility/minimum_age}" wrapping="true" />
+											<Text text="{i18n&gt;MaxAge}: {eligibility/maximum_age}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+								<Panel headerText="5. {i18n&gt;HV}" expandable="true" expanded="true">
+                                    <content>
+                                        <VBox>
+                                            <Text text="{eligibility/healthy_volunteers}" wrapping="true" />
+                                        </VBox>
+                                    </content>
+                                </Panel>
+                            </content>
+                        </ScrollContainer>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
